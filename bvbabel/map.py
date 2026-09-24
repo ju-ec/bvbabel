@@ -151,7 +151,7 @@ def read_map(filename):
             data_img.append(slice_data[:, :, None])
 
     data_img = np.concatenate(data_img, axis=2)
-    data_img = data_img[::-1, ::-1, :]  # Flip BrainVoyager axes
+    data_img = data_img = data_img[:, ::-1, :]
 
     # -------------------------------------------------------------------------
     # For cross-correlation maps: split the packed float into its integer (lag)
@@ -287,7 +287,7 @@ def write_map(filename, header, data_img):
         # ---------------------------------------------------------------------
         # Write MAP image data
         # ---------------------------------------------------------------------
-        data_img = data_img[::-1, ::-1, :]  # Restore BrainVoyager axes
+        data_img = data_img[:, ::-1, :]  # Restore BrainVoyager axes
 
         for s in range(nr_slices):
             # Each slice is preceded by its zero-based slice index.
